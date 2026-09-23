@@ -11,16 +11,31 @@
 
 ## Integrantes da dupla
 
-- **Aluno 1 - Nome**: <mark>`<preencher>`</mark>
-- **Aluno 1 - Cartão UFRGS**: <mark>`<preencher>`</mark>
+- **Aluno 1 - Nome**: Rodrigo Guimarães Ourique
+- **Aluno 1 - Cartão UFRGS**: 581169
 
-- **Aluno 2 - Nome**: <mark>`<preencher>`</mark>
-- **Aluno 2 - Cartão UFRGS**: <mark>`<preencher>`</mark>
+- **Aluno 2 - Nome**: Patrick Alves de Queiros
+- **Aluno 2 - Cartão UFRGS**: 287729
 
 ## Detalhes do que será implementado
 
-- **Título do trabalho**: <mark>`<preencher>`</mark>
-- **Parágrafo curto descrevendo o que será implementado**: <mark>`<preencher>`</mark>
+- **Título do trabalho**: Lite Souls
+- **Parágrafo curto descrevendo o que será implementado**: Jogo de combate corpo-a-corpo em primeira e terceira pessoa, PVE (player versus environment) com mapas predefinidos, IA simples para diferentes tipos de adversarios e mecanica de combate "souls-like", envolvendo tipos diferentes de ataque, bloqueio, e esquivo. 
+
+<!--
+## Anotacoes do grupo
+Escopo dos assets e mecanica
+- O jogo implementara os seguintes assets: 
+  - 4 tipos de inimigos, potencialmente governados por IA diferente, com capacidade simples de pathfinding.
+  - 4 mapas, cada um introduzindo um novo tipo de inimigo e arma.
+  - 4 armas: Garrafa quebrada, Taco de Baseball, Tijolo, Garrucha
+- A mecanica do jogo sera a seguinte. Para cada nivel, você deverá:
+  - Coletar pontos e colecionaveis (objetos brilhantes)
+  - Coletar chaves para abrir portas
+  - Matar todos os inimigos para obter pontuacao adicional
+  - Chegar na posicao de chegada para ir ao proximo nivel
+-->
+
 
 ## Especificação visual
 
@@ -86,31 +101,44 @@
 Para cada um dos requisitos abaixo (detalhados no [Enunciado do Trabalho final - Moodle](https://moodle.ufrgs.br/mod/assign/view.php?id=6302370)), escreva um parágrafo **curto** explicando como este requisito será atendido, apontando itens específicos do vídeo/imagens que você incluiu acima que atendem estes requisitos.
 
 ### Malhas poligonais complexas
-<mark>`<preencher>`</mark>
-
+Estarao presentes em:
+  - Tipos diferentes de armas
+  - Modelos dos inimigos/IA
+  - Potencialmente objetos no mapa
+  - Solo do mapa
 ### Transformações geométricas controladas pelo usuário
-<mark>`<preencher>`</mark>
+Diretamente: 
+  - Movimentação do jogador/camera
+  - Animacoes do jogador
+  - <Talvez> Interacoes com o cenario
+Indiretamente:
+  - Inimigos de IA
 
 ### Diferentes tipos de câmeras
-<mark>`<preencher>`</mark>
+  - Terceira-Pessoa
+  - Primeira-pessoa
 
 ### Instâncias de objetos
-<mark>`<preencher>`</mark>
+  - Inimigos do mesmo tipo
 
 ### Testes de intersecção
-<mark>`<preencher>`</mark>
+O jogo devera implementar testes de intersecção nas seguintes ocasioes
+  - Colisao do jogador com objetos do mapa
+  - Intersecção de linha de disparo/mira da garrucha com o mapa ou com um inimigo (hitscan)
 
 ### Modelos de Iluminação em todos os objetos
-<mark>`<preencher>`</mark>
+- Iluminação Lambert para superficies difusas
+- Iluminacao Phong para superficies especulares, como vidros, agua e metais polidos.
 
 ### Mapeamento de texturas em todos os objetos
-<mark>`<preencher>`</mark>
+- As texturas serao todas definidas por imagens
+- Usaremos mapeamento UV
 
 ### Movimentação com curva Bézier cúbica
-<mark>`<preencher>`</mark>
+- Implementaremos arremesso de projeteis pelo jogador, que se movimentarao utilizando uma curva Bézier.
 
 ### Animações baseadas no tempo ($\Delta t$)
-<mark>`<preencher>`</mark>
+- Serao implementadas para a IA, jogador e projeteis arremessados.
 
 ### Funcionalidade extra obrigatória
 
@@ -120,7 +148,9 @@ Para cada um dos requisitos abaixo (detalhados no [Enunciado do Trabalho final -
 > - Esta funcionalidade também deverá ser documentada no arquivo
 >   `README.md` da entrega final.
 
-<mark>`<preencher>`</mark>
+- Pretendemos implementar:
+  - Neblina que cresce exponencialmente com a distancia
+  - Efeitos de particula simples, como splashes de agua e impactos das armas no ambiente.
 
 ## Limitações esperadas
 
