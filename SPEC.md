@@ -39,7 +39,7 @@
 >   do próprio repositório. Mas, garanta que qualquer um tenha
 >   permissão de acesso ao vídeo através deste link.
 
-[https://www.youtube.com/watch?v=QB_HZeH3X3c](Clique Aqui)
+[Clique Aqui](https://www.youtube.com/watch?v=QB_HZeH3X3c)
 
 ### Vídeo - Timestamp
 
@@ -65,21 +65,24 @@
 
 #### Imagem 1
 
-- **Descrição**: Avião visto pela câmera de perseguição (terceira pessoa), voando sobre a ilha. Mostra o modelo do avião, o terreno texturizado com grama e rocha, a água ao redor e a neblina/céu no horizonte.
+- **Descrição**: Aviao visto em terceira pessoa, sobrevoando uma cidade. Abaixo, pode-se tambem observar um conjunto de meshes para prédios e um rio.
 
-![Imagem 1](images/spec/image1.jpg)
+<img width="1707" height="865" alt="image" src="https://github.com/user-attachments/assets/d697be16-256b-4d8a-9c09-a4156677e126" />
+
 
 #### Imagem 2
 
-- **Descrição**: Avião atravessando um anel do percurso. Mostra os anéis (mesma malha instanciada várias vezes) e a relação de escala entre avião, anéis e terreno.
+- **Descrição**: Visao de primeira-pessoa da cabine. Diferentemente dessa versao do simulador, nos implementaremos uma cabine tri-dimensional com "free-look".
 
-![Imagem 2](images/spec/image2.jpg)
+<img width="1727" height="971" alt="image" src="https://github.com/user-attachments/assets/30dfb337-8375-4ae2-bb58-1f709d82bf3e" />
+
 
 #### Imagem 3
 
-- **Descrição**: Aproximação final e pouso na pista. Mostra a pista, construções próximas (hangar, biruta) e a sombra do avião sobre o solo.
+- **Descrição**: Frame exibido no menu principal. Percebe-se neblina mais acentuada e uma nova textura para o ceu, em função de condição climática diferente.
 
-![Imagem 3](images/spec/image3.jpg)
+<img width="753" height="436" alt="image" src="https://github.com/user-attachments/assets/0c0421c1-2231-4e02-9338-ea3e25a173d7" />
+
 
 ## Especificação textual
 
@@ -99,8 +102,8 @@ Para cada um dos requisitos abaixo (detalhados no [Enunciado do Trabalho final -
 
 ### Diferentes tipos de câmeras
 
-- Terceira pessoa: segue o avião por trás, olhando para ele, como nas Imagens 1–3. O mouse permite orbitar a câmera ao redor do avião.
-- Primeira pessoa: posicionada no assento do piloto, acompanhando a orientação do avião. O mouse permite olhar ao redor dentro da cabine.
+- Terceira pessoa: segue o avião por trás, olhando para ele, como na imagem 1 e 3. O mouse permite orbitar a câmera ao redor do avião.
+- Primeira pessoa: posicionada no assento do piloto, como na imagem 2, acompanhando a orientação do avião. O mouse permite olhar ao redor dentro da cabine.
 
 O jogador alterna entre as câmeras com a tecla V.
 
