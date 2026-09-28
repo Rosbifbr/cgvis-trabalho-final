@@ -19,23 +19,8 @@
 
 ## Detalhes do que será implementado
 
-- **Título do trabalho**: Lite Souls
-- **Parágrafo curto descrevendo o que será implementado**: Jogo de combate corpo-a-corpo em primeira e terceira pessoa, PVE (player versus environment) com mapas predefinidos, IA simples para diferentes tipos de adversarios e mecanica de combate "souls-like", envolvendo tipos diferentes de ataque, bloqueio, e esquivo. 
-
-<!--
-## Anotacoes do grupo
-Escopo dos assets e mecanica
-- O jogo implementara os seguintes assets: 
-  - 4 tipos de inimigos, potencialmente governados por IA diferente, com capacidade simples de pathfinding.
-  - 4 mapas, cada um introduzindo um novo tipo de inimigo e arma.
-  - 4 armas: Garrafa quebrada, Taco de Baseball, Tijolo, Garrucha
-- A mecanica do jogo sera a seguinte. Para cada nivel, você deverá:
-  - Coletar pontos e colecionaveis (objetos brilhantes)
-  - Coletar chaves para abrir portas
-  - Matar todos os inimigos para obter pontuacao adicional
-  - Chegar na posicao de chegada para ir ao proximo nivel
--->
-
+- **Título do trabalho**: C Wings
+- **Parágrafo curto descrevendo o que será implementado**: Simulador de voo arcade inspirado visualmente em Microsoft Flight Simulator 2000 e Pilotwings 64. O jogador pilota um avião sobre uma ilha texturizada com arvores, pista de pouso e outros objetos. O jogo nao possui missoes ou objetivos, mas contara com diferentes tipos de aeronaves, viewports e condicoes de voo.
 
 ## Especificação visual
 
@@ -54,7 +39,7 @@ Escopo dos assets e mecanica
 >   do próprio repositório. Mas, garanta que qualquer um tenha
 >   permissão de acesso ao vídeo através deste link.
 
-<mark>`<preencher>`</mark>
+[https://www.youtube.com/watch?v=QB_HZeH3X3c](Clique Aqui)
 
 ### Vídeo - Timestamp
 
@@ -63,8 +48,8 @@ Escopo dos assets e mecanica
 >   será a base de comparação para avaliar se o seu trabalho final
 >   conseguiu ou não reproduzir a referência.
 
-- **Timestamp inicial**: <mark>`<preencher>`</mark>
-- **Timestamp final**: <mark>`<preencher>`</mark>
+- **Timestamp inicial**: 11:00
+- **Timestamp final**: 11:30
 
 ### Imagens
 
@@ -80,19 +65,19 @@ Escopo dos assets e mecanica
 
 #### Imagem 1
 
-- **Descrição**: <mark>`<preencher>`</mark>
+- **Descrição**: Avião visto pela câmera de perseguição (terceira pessoa), voando sobre a ilha. Mostra o modelo do avião, o terreno texturizado com grama e rocha, a água ao redor e a neblina/céu no horizonte.
 
 ![Imagem 1](images/spec/image1.jpg)
 
 #### Imagem 2
 
-- **Descrição**: <mark>`<preencher>`</mark>
+- **Descrição**: Avião atravessando um anel do percurso. Mostra os anéis (mesma malha instanciada várias vezes) e a relação de escala entre avião, anéis e terreno.
 
 ![Imagem 2](images/spec/image2.jpg)
 
 #### Imagem 3
 
-- **Descrição**: <mark>`<preencher>`</mark>
+- **Descrição**: Aproximação final e pouso na pista. Mostra a pista, construções próximas (hangar, biruta) e a sombra do avião sobre o solo.
 
 ![Imagem 3](images/spec/image3.jpg)
 
@@ -101,44 +86,58 @@ Escopo dos assets e mecanica
 Para cada um dos requisitos abaixo (detalhados no [Enunciado do Trabalho final - Moodle](https://moodle.ufrgs.br/mod/assign/view.php?id=6302370)), escreva um parágrafo **curto** explicando como este requisito será atendido, apontando itens específicos do vídeo/imagens que você incluiu acima que atendem estes requisitos.
 
 ### Malhas poligonais complexas
-Estarao presentes em:
-  - Tipos diferentes de armas
-  - Modelos dos inimigos/IA
-  - Potencialmente objetos no mapa
-  - Solo do mapa
+
+- Modelos de aeronave,
+- Arvores do terreno,
+- Hangar, 
+- O terreno da ilha será uma triangle mesh gerada a partir de um heightmap.
+
 ### Transformações geométricas controladas pelo usuário
-Diretamente: 
-  - Movimentação do jogador/camera
-  - Animacoes do jogador
-  - <Talvez> Interacoes com o cenario
-Indiretamente:
-  - Inimigos de IA
+
+- O jogador controla a orientação do avião e a potência do motor pelo teclado, o que define a Model matrix do avião a cada quadro.
+- A hélice girara com velocidade proporcional à potência do motor, e as superfícies de controle (ailerons e leme) giram conforme os comandos do jogador.
 
 ### Diferentes tipos de câmeras
-  - Terceira-Pessoa
-  - Primeira-pessoa
+
+- Terceira pessoa: segue o avião por trás, olhando para ele, como nas Imagens 1–3. O mouse permite orbitar a câmera ao redor do avião.
+- Primeira pessoa: posicionada no assento do piloto, acompanhando a orientação do avião. O mouse permite olhar ao redor dentro da cabine.
+
+O jogador alterna entre as câmeras com a tecla V.
 
 ### Instâncias de objetos
-  - Inimigos do mesmo tipo
+
+As árvores e predios da ilha serão desenhados várias vezes a partir de um mesmo conjunto de vértices, cada instância com sua própria Model matrix.
 
 ### Testes de intersecção
-O jogo devera implementar testes de intersecção nas seguintes ocasioes
-  - Colisao do jogador com objetos do mapa
-  - Intersecção de linha de disparo/mira da garrucha com o mapa ou com um inimigo (hitscan)
+
+As colisoes do aviao serao testadas com uma multitude de objetos, produzindo diferentes efeitos visuais, como por exemplo:
+Aviao x obstaculo, alta velociade: explosao e fim de jogo.
+Aviao x obstaculo, baixa velociade: "bounce" para o aviao, som de colisao
+Rodas do Aviao x pista, baixa velocidade: pouso bem sucedido.
 
 ### Modelos de Iluminação em todos os objetos
-- Iluminação Lambert para superficies difusas
-- Iluminacao Phong para superficies especulares, como vidros, agua e metais polidos.
+
+Uma luz direcional (sol)
+- Lambert: terreno, pista e árvores
+- Phong: no avião e água
+- Interpolação de Phong no avião, terreno e água
 
 ### Mapeamento de texturas em todos os objetos
-- As texturas serao todas definidas por imagens
-- Usaremos mapeamento UV
+
+- Todos os objetos terão cores definidas por imagens com coordenadas UV
+- O terreno utilizara texturas "tiled" para diferentes materiais como grama, areia e agua para evitar texturas esticadas.
 
 ### Movimentação com curva Bézier cúbica
-- Implementaremos arremesso de projeteis pelo jogador, que se movimentarao utilizando uma curva Bézier.
+
+- Um dirigível sobrevoa a ilha continuamente ao longo de um percurso fechado formado por segmentos de curva de Bézier cúbica, com continuidade de tangente entre os segmentos.
+- O jogador podera colidir com o dirigível, causando uma explosao.
 
 ### Animações baseadas no tempo ($\Delta t$)
-- Serao implementadas para a IA, jogador e projeteis arremessados.
+
+Todas as movimentações usam o tempo decorrido entre quadros: 
+- Flight model para o aviao
+- Rotação da hélice
+- Avanço do parâmetro da curva de Bézier do dirigível
 
 ### Funcionalidade extra obrigatória
 
@@ -148,9 +147,10 @@ O jogo devera implementar testes de intersecção nas seguintes ocasioes
 > - Esta funcionalidade também deverá ser documentada no arquivo
 >   `README.md` da entrega final.
 
-- Pretendemos implementar:
-  - Neblina que cresce exponencialmente com a distancia
-  - Efeitos de particula simples, como splashes de agua e impactos das armas no ambiente.
+- Sombras globais projetadas: 
+  - O aviao e outros objetos projetarao sombras suas no chao, o que ajudara o jogador a determinar sua altitude durante o pouso e decolagem.
+- Neblina:
+  - Para evitramos distorcoes como Z-fighting, renderizaremos a cena com neblina que crescera exponencialmente com a distancia da camera.
 
 ## Limitações esperadas
 
@@ -161,4 +161,7 @@ O jogo devera implementar testes de intersecção nas seguintes ocasioes
 > - Para cada item, **explique por que** não será implementado ou por
 >   que será implementado parcialmente.
 
-<mark>`<preencher>`</mark>
+- Unico mapa: O jogo tera apenas uma ilha. 
+- Modelo de voo simplificado: A fisica do aviao sera propositalmente arcade, para podermos focar mais em shading
+- HUD e menus simplificados: implementaremos a menor quantidade de HUD possivel. Provavelmente apenas um "main menu" e indicadores de velocidade e altitude.
+- Agua simplificada: A agua potencialmente nao sera animada. Sendo apenas uma textura tiled e reflexiva.
