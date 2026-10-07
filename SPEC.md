@@ -22,6 +22,8 @@
 - **Título do trabalho**: C Wings
 - **Parágrafo curto descrevendo o que será implementado**: Simulador de voo arcade inspirado visualmente em Microsoft Flight Simulator 2000 e Pilotwings 64. O jogador pilota um avião sobre uma ilha texturizada com arvores, pista de pouso e outros objetos. O jogo nao possui missoes ou objetivos, mas contara com diferentes tipos de aeronaves, viewports e condicoes de voo.
 
+> Comentário Professor: A aplicação deve possuir um objetivo e lógica de controle não trivial. Adicionem pelo menos um objetivo, por exemplo, decolar, realizar um percurso ou atravessar checkpoints e pousar corretamente em um destino.
+
 ## Especificação visual
 
 ### Vídeo - Link
@@ -76,12 +78,16 @@
 
 <img width="1727" height="971" alt="image" src="https://github.com/user-attachments/assets/30dfb337-8375-4ae2-bb58-1f709d82bf3e" />
 
+> Comentário Professor: A cabine tridimensional em primeira pessoa deve possuir detalhamento suficiente para ficar próxima da referência visual (instrumentos do painel). Considerem implementar indicadores dinâmicos associados ao estado do avião.
+
 
 #### Imagem 3
 
 - **Descrição**: Frame exibido no menu principal. Percebe-se neblina mais acentuada e uma nova textura para o ceu, em função de condição climática diferente.
 
 <img width="753" height="436" alt="image" src="https://github.com/user-attachments/assets/0c0421c1-2231-4e02-9338-ea3e25a173d7" />
+
+> Comentário Professor: A Imagem 3 menciona uma textura diferente para o céu e diferentes condições climáticas. Se isso fizer parte da referência visual escolhida, especifiquem como o céu será implementado, por exemplo, através de um *skybox*, ou incluam explicitamente esse elemento nas limitações.
 
 
 ## Especificação textual
@@ -130,10 +136,14 @@ Uma luz direcional (sol)
 - Todos os objetos terão cores definidas por imagens com coordenadas UV
 - O terreno utilizara texturas "tiled" para diferentes materiais como grama, areia e agua para evitar texturas esticadas.
 
+> Comentário Professor: Para textura do terreno, me parece melhor pegar uma imagem de satélite, ao invés de fazer /tiling/ de texturas simples como grama, etc. Caso o estilo visual seja mais parecido com o Pilotwings 64, incluam imagens de exemplo no repositório e SPEC.
+
 ### Movimentação com curva Bézier cúbica
 
 - Um dirigível sobrevoa a ilha continuamente ao longo de um percurso fechado formado por segmentos de curva de Bézier cúbica, com continuidade de tangente entre os segmentos.
 - O jogador podera colidir com o dirigível, causando uma explosao.
+
+> Comentário Professor: O dirigível que percorre as curvas de Bézier deve orientar-se de acordo com a direção de sua trajetória, utilizando a tangente da curva para determinar uma orientação coerente durante o movimento.
 
 ### Animações baseadas no tempo ($\Delta t$)
 
@@ -152,8 +162,12 @@ Todas as movimentações usam o tempo decorrido entre quadros:
 
 - Sombras globais projetadas: 
   - O aviao e outros objetos projetarao sombras suas no chao, o que ajudara o jogador a determinar sua altitude durante o pouso e decolagem.
+
+> Comentário Professor: A implementação de sombras projetadas é uma funcionalidade extra adequada e particularmente importante.
 - Neblina:
   - Para evitramos distorcoes como Z-fighting, renderizaremos a cena com neblina que crescera exponencialmente com a distancia da camera.
+
+> Comentário Professor: A neblina não elimina *Z-fighting*. Ela pode esconder visualmente artefatos distantes, mas o problema deve ser tratado adequadamente através do controle do far plane, projeção e precisão do *depth buffer*.
 
 ## Limitações esperadas
 
