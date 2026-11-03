@@ -3,3 +3,5 @@
 Este repositório contém o código base para o trabalho final. O enunciado completo do trabalho final está no Moodle:
 
 https://moodle.ufrgs.br/mod/assign/view.php?id=6302370
+
+note to self: uninstall glfw after project completion 
