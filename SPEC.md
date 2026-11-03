@@ -20,9 +20,12 @@
 ## Detalhes do que será implementado
 
 - **Título do trabalho**: C Wings
-- **Parágrafo curto descrevendo o que será implementado**: Simulador de voo arcade inspirado visualmente em Microsoft Flight Simulator 2000 e Pilotwings 64. O jogador pilota um avião sobre uma ilha texturizada com arvores, pista de pouso e outros objetos. O jogo nao possui missoes ou objetivos, mas contara com diferentes tipos de aeronaves, viewports e condicoes de voo.
+- **Parágrafo curto descrevendo o que será implementado**: Simulador de voo arcade inspirado visualmente em Microsoft Flight Simulator 2000 e Pilotwings 64. 
+    - O jogador pilota um avião sobre uma ilha texturizada com arvores, pista de pouso e outros objetos.
+    - O jogo conta com diferentes tipos de aeronaves, viewports e condicoes de voo.
+    - O jogo conta com uma unica missao onde o jogador percorre uma serie de "checkpoints" em uma ordem especifica. Ao finalizar o percurso, o tempo tomado pelo jogador sera contabilizado.
 
-> Comentário Professor: A aplicação deve possuir um objetivo e lógica de controle não trivial. Adicionem pelo menos um objetivo, por exemplo, decolar, realizar um percurso ou atravessar checkpoints e pousar corretamente em um destino.
+<!-- Comentário Professor: A aplicação deve possuir um objetivo e lógica de controle não trivial. Adicionem pelo menos um objetivo, por exemplo, decolar, realizar um percurso ou atravessar checkpoints e pousar corretamente em um destino. -->
 
 ## Especificação visual
 
@@ -78,16 +81,23 @@
 
 <img width="1727" height="971" alt="image" src="https://github.com/user-attachments/assets/30dfb337-8375-4ae2-bb58-1f709d82bf3e" />
 
-> Comentário Professor: A cabine tridimensional em primeira pessoa deve possuir detalhamento suficiente para ficar próxima da referência visual (instrumentos do painel). Considerem implementar indicadores dinâmicos associados ao estado do avião.
+<!-- Comentário Professor: A cabine tridimensional em primeira pessoa deve possuir detalhamento suficiente para ficar próxima da referência visual (instrumentos do painel). Considerem implementar indicadores dinâmicos associados ao estado do avião. -->
+<!-- Replica: Implementaremos uma cabine 3d simplificada com os principais instrumentos da aeronave. Estes incluirao, mas nao estarao limitados a: 
+1. Horizonte aritificial
+2. Altimetro 
+3. Velocimetro
+4. Bussola
+-->
 
 
 #### Imagem 3
 
-- **Descrição**: Frame exibido no menu principal. Percebe-se neblina mais acentuada e uma nova textura para o ceu, em função de condição climática diferente.
+- **Descrição**: Frame exibido no menu principal. Percebe-se neblina mais acentuada e uma skybox diferente, em função de condição climática selecionada.
 
 <img width="753" height="436" alt="image" src="https://github.com/user-attachments/assets/0c0421c1-2231-4e02-9338-ea3e25a173d7" />
 
-> Comentário Professor: A Imagem 3 menciona uma textura diferente para o céu e diferentes condições climáticas. Se isso fizer parte da referência visual escolhida, especifiquem como o céu será implementado, por exemplo, através de um *skybox*, ou incluam explicitamente esse elemento nas limitações.
+<!-- Comentário Professor: A Imagem 3 menciona uma textura diferente para o céu e diferentes condições climáticas. Se isso fizer parte da referência visual escolhida, especifiquem como o céu será implementado, por exemplo, através de um *skybox*, ou incluam explicitamente esse elemento nas limitações. -->
+<!-- Replica: Sim, estavamos nos referindo a uma skybox diferente para cada uma das condicoes climaticas. Alteramos a descricao acima.-->
 
 
 ## Especificação textual
@@ -134,16 +144,18 @@ Uma luz direcional (sol)
 ### Mapeamento de texturas em todos os objetos
 
 - Todos os objetos terão cores definidas por imagens com coordenadas UV
-- O terreno utilizara texturas "tiled" para diferentes materiais como grama, areia e agua para evitar texturas esticadas.
+- O terreno utilizara uma textura de satelite de alta resolucao para maior fidelidade grafica.
 
-> Comentário Professor: Para textura do terreno, me parece melhor pegar uma imagem de satélite, ao invés de fazer /tiling/ de texturas simples como grama, etc. Caso o estilo visual seja mais parecido com o Pilotwings 64, incluam imagens de exemplo no repositório e SPEC.
+<!-- Comentário Professor: Para textura do terreno, me parece melhor pegar uma imagem de satélite, ao invés de fazer /tiling/ de texturas simples como grama, etc. Caso o estilo visual seja mais parecido com o Pilotwings 64, incluam imagens de exemplo no repositório e SPEC. -->
+<!-- Replica: Aceitamos a sugestao. Simplificara o projeto -->
 
 ### Movimentação com curva Bézier cúbica
 
 - Um dirigível sobrevoa a ilha continuamente ao longo de um percurso fechado formado por segmentos de curva de Bézier cúbica, com continuidade de tangente entre os segmentos.
+- O dirigível que percorre as curvas de Bézier se orientara de acordo com a direção de sua trajetória, utilizando a tangente da curva para determinar uma orientação coerente durante o movimento.
 - O jogador podera colidir com o dirigível, causando uma explosao.
 
-> Comentário Professor: O dirigível que percorre as curvas de Bézier deve orientar-se de acordo com a direção de sua trajetória, utilizando a tangente da curva para determinar uma orientação coerente durante o movimento.
+<!-- Comentário Professor: O dirigível que percorre as curvas de Bézier deve orientar-se de acordo com a direção de sua trajetória, utilizando a tangente da curva para determinar uma orientação coerente durante o movimento. -->
 
 ### Animações baseadas no tempo ($\Delta t$)
 
@@ -162,12 +174,11 @@ Todas as movimentações usam o tempo decorrido entre quadros:
 
 - Sombras globais projetadas: 
   - O aviao e outros objetos projetarao sombras suas no chao, o que ajudara o jogador a determinar sua altitude durante o pouso e decolagem.
-
-> Comentário Professor: A implementação de sombras projetadas é uma funcionalidade extra adequada e particularmente importante.
+<!-- Comentário Professor: A implementação de sombras projetadas é uma funcionalidade extra adequada e particularmente importante. -->
 - Neblina:
   - Para evitramos distorcoes como Z-fighting, renderizaremos a cena com neblina que crescera exponencialmente com a distancia da camera.
 
-> Comentário Professor: A neblina não elimina *Z-fighting*. Ela pode esconder visualmente artefatos distantes, mas o problema deve ser tratado adequadamente através do controle do far plane, projeção e precisão do *depth buffer*.
+<!-- Comentário Professor: A neblina não elimina *Z-fighting*. Ela pode esconder visualmente artefatos distantes, mas o problema deve ser tratado adequadamente através do controle do far plane, projeção e precisão do *depth buffer*. -->
 
 ## Limitações esperadas
 
